@@ -2,17 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def rysuj_wielomian_z_punktami(a, x, y, xmin=None, xmax=None, num_points=500):
-    """
-    Rysuje wykres wielomianu na podstawie współczynników `a`
-    oraz zaznacza punkty z tablic `x` i `y`.
-    """
     x = np.array(x)
     y = np.array(y)
 
-    if xmin is None:
-        xmin = min(x) - 1
-    if xmax is None:
-        xmax = max(x) + 1
 
     x_plot = np.linspace(xmin, xmax, num_points)
     y_plot = np.zeros_like(x_plot)
@@ -34,13 +26,16 @@ def rysuj_wielomian_z_punktami(a, x, y, xmin=None, xmax=None, num_points=500):
 
 def cholesky_decomposition(A):
     n = A.shape[0]
-    L = np.zeros_like(A)
+    L = np.zeros_like(A, dtype=float)
 
     for i in range(n):
         for j in range(i + 1):
             sum_ = sum(L[i][k] * L[j][k] for k in range(j))
             if i == j:
-                L[i][j] = np.sqrt(A[i][i] - sum_)
+                diag_value = A[i][i] - sum_
+                if diag_value <= 0:
+                    raise ValueError(f"Macierz nie jest dodatnio określona przy i={i}, wartość: {diag_value}")
+                L[i][j] = np.sqrt(diag_value)
             else:
                 L[i][j] = (A[i][j] - sum_) / L[j][j]
     return L
@@ -98,8 +93,8 @@ def Papinski_Bartosc_MNK(X, Y, n):
     Yarray = []
 
     #zamiast tej petli mozna zrobic transpozycje jakos, ale chyba sie nie da bo tablica wejsciowa to Y = [1, 2 ,3] a nie [[1, 2, 3]]
-    Yarray = np.array(Y)  # to tworzy 1D array np. [1, 2, 3, 4]
-    Prawa = At.dot(Yarray)  # wynik będzie też 1D: shape = (n,)
+    Yarray = np.array(Y)
+    Prawa = At.dot(Yarray)
 
     print("prawa strona rownania")
     print(Prawa)
@@ -112,13 +107,19 @@ def Papinski_Bartosc_MNK(X, Y, n):
 x = [-2, -1, 0, 1, 2, 3]
 y = [-35, -11, -5, -5, 3, 37 ]
 
-a = Papinski_Bartosc_MNK(x, y, 3)
+
+
+x = [-2, -1, 0, 1, 2]
+y = [-25, -5, 1, 5, 19]
+
+a = Papinski_Bartosc_MNK(x, y, 4)
 print("Współczynniki wielomianu:", a)
-rysuj_wielomian_z_punktami(a, x, y)
+rysuj_wielomian_z_punktami(a, x, y, xmin=-3, xmax=4)
 
 
-#x = [-1, 2, 4]
-#y = [-1, 2, -16]
-#a = Papinski_Bartosc_MNK(x, y, 2)
-#print("Współczynniki wielomianu:", a)
-#rysuj_wielomian_z_punktami(a, x, y)
+
+# testy rozkladu
+#print(cholesky_decomposition(np.array([[4, 0, 0, 0], [0, 9, 0, 0], [0, 0, 4, 0], [0, 0, 0, 16]])))
+#print(cholesky_decomposition(np.array([[4, -6, -8], [-6, 10, -10], [8, -10, 29]])))
+# dziala dobrze
+
