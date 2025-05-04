@@ -104,10 +104,27 @@ def Papinski_Bartosc_MNK(X, Y, n):
     return a
 
 
-x = [-2, -1, 0, 1, 2, 3]
-y = [-35, -11, -5, -5, 3, 37 ]
+
+# wielomian stopnia 2
+
+x = [-2, -1, 0, 1, 2]
+y = [15, 6, 1, 0, 1]  # obliczone z f(x) = 2x^2 - 3x + 1
+
+a = Papinski_Bartosc_MNK(x, y, 2)
+print("Współczynniki wielomianu:", a)
+rysuj_wielomian_z_punktami(a, x, y, xmin=-3, xmax=3)
 
 
+# wielomian stopnia 3
+
+x = [-2, -1, 0, 1, 2]
+y = [-25, -5, 1, 5, 19]  # obliczone z f(x) = 2x^3 - x^2 + 3x + 1
+
+a = Papinski_Bartosc_MNK(x, y, 3)
+print("Współczynniki wielomianu:", a)
+rysuj_wielomian_z_punktami(a, x, y, xmin=-3, xmax=3)
+
+# wielomian stopnia 4
 
 x = [-2, -1, 0, 1, 2]
 y = [-25, -5, 1, 5, 19]
@@ -117,9 +134,16 @@ print("Współczynniki wielomianu:", a)
 rysuj_wielomian_z_punktami(a, x, y, xmin=-3, xmax=4)
 
 
+# wielomian 5 stopnia
+
+x = [-3, -2, -1, 0, 1, 2]
+y = [-448, -81, -8, -1, 0, 7]
+
+a = Papinski_Bartosc_MNK(x, y, 5)
+print("Współczynniki wielomianu:", a)
+rysuj_wielomian_z_punktami(a, x, y, xmin=-4, xmax=3)
 
 # testy rozkladu
 #print(cholesky_decomposition(np.array([[4, 0, 0, 0], [0, 9, 0, 0], [0, 0, 4, 0], [0, 0, 0, 16]])))
 #print(cholesky_decomposition(np.array([[4, -6, -8], [-6, 10, -10], [8, -10, 29]])))
 # dziala dobrze
-
