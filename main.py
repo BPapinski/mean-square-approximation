@@ -76,8 +76,8 @@ def Papinski_Bartosc_MNK(X, Y, n):
     array = []
 
     for x in X:
-        array.append([1, x, x**2])
-
+        row = [x ** i for i in range(n + 1)]
+        array.append(row)
     A = np.array(array)
 
     print("macierz A:")
@@ -98,10 +98,8 @@ def Papinski_Bartosc_MNK(X, Y, n):
     Yarray = []
 
     #zamiast tej petli mozna zrobic transpozycje jakos, ale chyba sie nie da bo tablica wejsciowa to Y = [1, 2 ,3] a nie [[1, 2, 3]]
-    for y in Y:
-        Yarray.append([y])
-
-    Prawa = At.dot(Yarray)
+    Yarray = np.array(Y)  # to tworzy 1D array np. [1, 2, 3, 4]
+    Prawa = At.dot(Yarray)  # wynik będzie też 1D: shape = (n,)
 
     print("prawa strona rownania")
     print(Prawa)
@@ -111,15 +109,16 @@ def Papinski_Bartosc_MNK(X, Y, n):
     return a
 
 
-x = [-1, 0, 1, 2]
-y = [4, -1, 0, 7]
+x = [-2, -1, 0, 1, 2, 3]
+y = [-35, -11, -5, -5, 3, 37 ]
+
 a = Papinski_Bartosc_MNK(x, y, 3)
 print("Współczynniki wielomianu:", a)
 rysuj_wielomian_z_punktami(a, x, y)
 
 
-x = [-1, 2, 4]
-y = [-1, 2, -16]
-a = Papinski_Bartosc_MNK(x, y, 2)
-print("Współczynniki wielomianu:", a)
-rysuj_wielomian_z_punktami(a, x, y)
+#x = [-1, 2, 4]
+#y = [-1, 2, -16]
+#a = Papinski_Bartosc_MNK(x, y, 2)
+#print("Współczynniki wielomianu:", a)
+#rysuj_wielomian_z_punktami(a, x, y)
