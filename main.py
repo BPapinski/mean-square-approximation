@@ -118,7 +118,7 @@ def Papinski_Bartosc_MNK(X, Y, n):
 
 
 
-# wielomian stopnia 2 f(x) = 2x^2 - 3x + 1
+# wielomian stopnia 2 f(x) = x^2 - 3x + 2
 
 x = [-2, -1, 0, 1, 2]
 y = [15, 6, 1, 0, 1]
@@ -128,7 +128,7 @@ print("Współczynniki wielomianu:", a)
 wykres(a, x, y, xmin=-3, xmax=3)
 
 
-# wielomian stopnia 3 f(x) = 0.2·x^3 - 0.5·x
+# wielomian stopnia 3
 
 x = [-3, -2, -1, 0, 1, 2, 3]
 y = [-1.8, -0.6, 0.3, 0.0, -0.3, 0.6, 1.8]
@@ -139,7 +139,7 @@ wykres(a, x, y, xmin=-3.5, xmax=3.5)
 
 
 
-# wielomian stopnia 4 f(x) = -0.1·x^4 + 0.4·x^2
+# wielomian stopnia 4
 
 x = [-3, -2, -1, 0, 1, 2, 3]
 y = [-2.7, -0.8, 0.3, 0.0, 0.3, -0.8, -2.7]
