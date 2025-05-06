@@ -16,12 +16,11 @@ def wykres(a, x, y, xmin=None, xmax=None, num_points=500): # rysuje wykres wielo
     for power, c in enumerate(a):
         y_plot += c * x_plot ** power
 
-    # Ustalamy zakres y z marginesem
-    y_all = np.concatenate((y, y_plot))  # zarówno dane, jak i wartości z wielomianu
+    y_all = np.concatenate((y, y_plot))
     y_min = y_all.min()
     y_max = y_all.max()
     y_range = y_max - y_min
-    margin = 0.1 * y_range  # 10% marginesu
+    margin = 0.1 * y_range
 
     plt.figure(figsize=(8, 5))
     plt.plot(x_plot, y_plot, label='Wielomian aproksymujący', color='blue')
@@ -34,7 +33,7 @@ def wykres(a, x, y, xmin=None, xmax=None, num_points=500): # rysuje wykres wielo
     plt.grid(True)
     plt.legend()
 
-    # Ustawienie jednakowej skali osi i dopasowanie zakresów
+
     plt.gca().set_aspect('equal', adjustable='box')
     plt.xlim(xmin, xmax)
     plt.ylim(y_min - margin, y_max + margin)
@@ -115,7 +114,6 @@ def Papinski_Bartosc_MNK(X, Y, n):
 
     a = rozwiaz_uklad_cholesky(Ata, Prawa)
     return a
-
 
 
 # wielomian stopnia 2 f(x) = x^2 - 3x + 2
